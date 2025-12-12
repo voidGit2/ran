@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <title>sjad</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            height: 100vh;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            background-attachment: scroll;
+        }
+
+        .space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background : black
+        }
+
+        .animated-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgb(29, 0, 0), transparent);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #801e1e, transparent);
+            bottom: -10%;
+            right: -5%;
+            animation-delay: 5s;
+        }
+
+        .orb3 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgb(112, 2, 2), transparent);
+            top: 30%;
+            right: -15%;
+            animation-delay: 10s;
+        }
+
+        .orb4 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, #b85450, transparent);
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 15s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -30px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.9); }
+            75% { transform: translate(40px, 30px) scale(1.05); }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background: #ff0000;
+            border-radius: 50%;
+            animation: twinkle 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1) rotate(0deg); }
+            100% { opacity: 0.8; transform: scale(1.3) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0 40px;
+            animation: slideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #c69c6d 0%, #d4b896 25%, #6b7280 50%, #4a90a4 75%, #b85450 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite, logoFloat 3s ease-in-out infinite;
+            filter: drop-shadow(0 4px 12px rgba(198, 156, 109, 0.3));
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            color: #b8a894;
+            animation: fadeIn 1.8s ease-in;
+            font-weight: 500;
+        }
+
+        .box2 {
+            width: 100%;
+            height: 100px;
+            background-color: rgb(5, 5, 10);
+            display: flex;
+            align-items: center;
+        }
+
+        .vd {
+            color: brown;
+            margin-left: 79px;
+            font-size: 50px;
+        }
+
+        .on {
+            all: unset;
+            padding: 5px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.4);
+            transition: border .3s ease-in-out;
+            color: brown;
+            background-color: black;
+            width: 350px;
+            height: 37px;
+            margin-left: 55px;
+            font-size: 20px;   
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .on:focus {
+            border-color: brown;
+        }
+
+        .on:hover {
+            border-color: brown;
+        }
+
+        .on::placeholder {
+            font-size: 20px;
+        }
+
+        .sec-center {
+            position: relative;
+            max-width: 100%;
+            text-align: left;
+            z-index: 200;
+          }
+          [type="checkbox"]:checked,
+          [type="checkbox"]:not(:checked){
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+          }
+          .dark-light:checked + label,
+          .dark-light:not(:checked) + label{
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 20000;
+            display: block;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            transition: all 200ms linear;
+            box-shadow: 0 0 20px rgb(20, 1, 1);
+          }
+          .dark-light:checked + label{
+            transform: rotate(360deg);
+          }
+          .dark-light:checked + label:after,
+          .dark-light:not(:checked) + label:after{
+            position: absolute;
+            content: '';
+            top: 1px;
+            left: 1px;
+            overflow: hidden;
+            z-index: 2;
+            display: block;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            background-color: #102770;
+            background-image: url('https://assets.codepen.io/1462889/moon.svg');
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 200ms linear;
+            opacity: 0;
+          }
+          .dark-light:checked + label:after {
+            opacity: 1;
+          }
+          .dark-light:hover + label::before,
+          .dark-light:not(:hover) + label::before{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+            display: block;
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            background-color: #48dbfb;
+            background-image: url('https://assets.codepen.io/1462889/sun.svg');
+            background-size: 25px 25px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 200ms linear;
+          }
+          .dark-light:checked + label:before{
+            background-color: #000;
+          }
+          .light-back{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background-color: rgb(0, 0, 0);
+            overflow: hidden;
+            background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+            background-position: center;
+            background-repeat: repeat;
+            background-size: 4%;
+            height: 100%;
+            width: 100%;
+            transition: all 200ms linear;
+            opacity: 0;
+          }
+          .dark-light:checked ~ .light-back{
+            opacity: 1;
+          }
+          .dropdown:checked + label,
+          .dropdown:not(:checked) + label{
+            margin-left: 165px;
+            position: relative;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 2;
+            height: 50px;
+            transition: all 200ms linear;
+            border-radius: 35px;
+            width: 120px;
+            letter-spacing: 1px;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            -moz-justify-content: center;
+            -ms-justify-content: center;
+            justify-content: center;
+            -ms-flex-pack: center;
+            text-align: center;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+            color: brown;
+            box-shadow: 0 12px 35px 0 rgba(255,235,167,.15);
+          }
+          
+          .dropdown:hover + label{
+            border-color: brown;
+          }
+
+          .dropdown:focus + label{
+            border-color: brown;
+          }
+          .dark-light:checked ~ .sec-center .for-dropdown{
+            background-color: #102770;
+            color: black;
+            box-shadow: 0 12px 35px 0 rgba(16,39,112,.25);
+          }
+          .dropdown:checked + label:before,
+          .dropdown:not(:checked) + label:before{
+            position: fixed;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            cursor: auto;
+            pointer-events: none;
+          }
+          .dropdown:checked + label:before{
+            pointer-events: auto;
+          }
+          .dropdown:not(:checked) + label .uil {
+            font-size: 24px;
+            margin-left: 10px;
+            transition: transform 200ms linear;
+          }
+          .dropdown:checked + label .uil {
+            transform: rotate(180deg);
+            font-size: 24px;
+            margin-left: 10px;
+            transition: transform 200ms linear;
+          }
+          .section-dropdown {
+            position: absolute;
+            padding: 5px;
+            background-color: rgb(7, 7, 7);
+            top: 70px;
+            left: 0;
+            width: 100%;
+            border-radius: 4px;
+            margin-left: 143px;
+            display: block;
+            box-shadow: 0 14px 35px 0 rgba(9,9,12,0.4);
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 200ms linear;
+          }
+          .dark-light:checked ~ .sec-center .section-dropdown {
+            background-color: rgb(0, 0, 0);
+            box-shadow: 0 14px 35px 0 rgba(9,9,12,0.15);
+          }
+          .dropdown:checked ~ .section-dropdown{
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+          }
+          .section-dropdown:before {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            content: '';
+            display: block;
+            z-index: 1;
+          }
+          .section-dropdown:after {
+            position: absolute;
+            top: -7px;
+            left: 30px;
+            width: 0; 
+            height: 0; 
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent; 
+            border-bottom: 8px solid #111;
+            content: '';
+            display: block;
+            z-index: 2;
+            transition: all 200ms linear;
+          }
+          .dark-light:checked ~ .sec-center .section-dropdown:after {
+            border-bottom: 8px solid brown;
+          }
+          
+          a {
+            position: relative;
+            color: brown;
+            transition: all 200ms linear;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 2px;
+            padding: 5px 0;
+            padding-left: 20px;
+            padding-right: 15px;
+            margin: 2px 0;
+            text-align: left;
+            text-decoration: none;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            justify-content: space-between;
+              -ms-flex-pack: distribute;
+          }
+          .dark-light:checked ~ .sec-center .section-dropdown a {
+            color: brown;
+          }
+          a:hover {
+            color: brown;
+            background-color: white;
+          }
+          .dark-light:checked ~ .sec-center .section-dropdown a:hover {
+            color: #000000;
+            background-color: #102770;
+          }
+          a .uil {
+            font-size: 22px;
+          }
+          .dropdown-sub:checked + label,
+          .dropdown-sub:not(:checked) + label{
+            position: relative;
+            color: brown;
+            transition: all 200ms linear;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 2px;
+            padding: 5px 0;
+            padding-left: 20px;
+            padding-right: 15px;
+            text-align: left;
+            text-decoration: none;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            justify-content: space-between;
+              -ms-flex-pack: distribute;
+              cursor: pointer;
+          }
+          .dropdown-sub:checked + label .uil,
+          .dropdown-sub:not(:checked) + label .uil{
+            font-size: 22px;
+          }
+          .dropdown-sub:not(:checked) + label .uil {
+            transition: transform 200ms linear;
+          }
+          .dropdown-sub:checked + label .uil {
+            transform: rotate(135deg);
+            transition: transform 200ms linear;
+          }
+          .dropdown-sub:checked + label:hover,
+          .dropdown-sub:not(:checked) + label:hover{
+            color: brown;
+            background-color: #ffeba7;
+          }
+          .dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub{
+            color: #ffeba7;
+          }
+          .dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub:hover{
+            color: #ffeba7;
+            background-color: #102770;
+          }
+          
+          .section-dropdown-sub {
+            position: relative;
+            display: block;
+            width: 100%;
+            pointer-events: none;
+            opacity: 0;
+            max-height: 0;
+            padding-left: 10px;
+            padding-right: 3px;
+            overflow: hidden;
+            transition: all 200ms linear;
+          }
+          .dropdown-sub:checked ~ .section-dropdown-sub{
+            pointer-events: auto;
+            opacity: 1;
+            max-height: 999px;
+          }
+          .section-dropdown-sub a {
+            font-size: 14px;
+          }
+          .section-dropdown-sub a .uil {
+            font-size: 20px;
+          }
+          .logo {
+              position: fixed;
+              top: 50px;
+              left: 40px;
+              display: block;
+              z-index: 11000000;
+            background-color: transparent;
+            border-radius: 0;
+            padding: 0;
+              transition: all 250ms linear;
+          }
+          .logo:hover {
+            background-color: transparent;
+          }
+          .logo img {
+              height: 26px;
+              width: auto;
+              display: block;
+            transition: all 200ms linear;
+          }
+          .dark-light:checked ~ .logo img{
+            filter: brightness(10%);
+          }
+          
+          @media screen and (max-width: 991px) {
+          .logo {
+              top: 30px;
+              left: 20px;
+          }
+          .dark-light:checked + label,
+          .dark-light:not(:checked) + label{
+            top: 20px;
+            right: 20px;
+          }
+          }
+
+          .tran {
+            width: 0;
+            height: 0;
+            border-top: 100px solid rgb(82, 3, 3);
+            border-left: 430px solid transparent;
+            position: absolute;
+            top: 0;
+            right: 0;
+          }
+
+          /* From Uiverse.io by joe-watson-sbf */ 
+.container {
+  margin-left: 10px;
+  color: brown;
+  position: relative;
+  font-family: sans-serif;
+}
+
+.container::before,
+.container::after {
+  
+  background-color: transparent;
+  position: absolute;
+}
+
+.container::before {
+  border-radius: 50%;
+  width: 100px;
+  height: 50px;
+  top: 30%;
+  right: 7%;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  height: 3rem;
+  top: 8%;
+  right: 5%;
+  border: 1px solid;
+}
+
+.container .box {
+  margin-left: 10px;
+  border-radius: 2px;
+  width: 215px;
+  height: 230px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.074);
+  border: 1px solid transparent;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: all ease 0.3s;
+}
+
+.container .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container .box .title {
+  margin-left: 10px;
+  height: 178px;
+  width: 188px;
+  border-radius: 10px;
+}
+
+.container .box div strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.container .box div p {
+  margin: 0;
+  font-size: 0.9em;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.container .box div span {
+  font-size: 0.7rem;
+  font-weight: 300;
+}
+
+.container .box div span:nth-child(3) {
+  font-weight: 500;
+  margin-right: 0.2rem;
+}
+
+.container .box:hover {
+  box-shadow: 0px 0px 20px 1px #b12209;
+  border: 1px solid transparent;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="space-bg">
+        <div class="animated-bg">
+            <div class="gradient-orb orb1"></div>
+            <div class="gradient-orb orb2"></div>
+            <div class="gradient-orb orb3"></div>
+            <div class="gradient-orb orb4"></div>
+        </div>
+        <div class="stars" id="stars"></div>
+    </div>
+
+    <div class="box2">
+        <h1 class="vd animate__animated animate__bounce"><code>SJAD</code></h1>
+        <center><input type="text" placeholder="SEARCH..." class="on"></center>
+        <div class="sec-center"> 	
+            <input class="dropdown" type="checkbox" id="dropdown" name="dropdown"/>
+            <label class="for-dropdown" for="dropdown">Menu<i class="uil uil-arrow-down"></i></label>
+            <div class="section-dropdown"> 
+                <a href="#">Dropdown Link <i class="uil uil-arrow-right"></i></a>
+                <input class="dropdown-sub" type="checkbox" id="dropdown-sub" name="dropdown-sub"/>
+                <label class="for-dropdown-sub" for="dropdown-sub">Dropdown Sub <i class="uil uil-plus"></i></label>
+                <div class="section-dropdown-sub"> 
+                    <a href="#">Dropdown Link <i class="uil uil-arrow-right"></i></a>
+                    <a href="#">Dropdown Link <i class="uil uil-arrow-right"></i></a>
+                </div>
+                <a href="#">Dropdown Link <i class="uil uil-arrow-right"></i></a>
+                <a href="#">Dropdown Link <i class="uil uil-arrow-right"></i></a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="tran"></div>
+    <div class="container">
+        <div class="box">
+            <img src="https://uploads.onecompiler.io/43xpej4gb/443dtkdaq/photo_5778514266821430633_x.jpg" class="title">
+            <div>
+                <strong>JOE WATSON SBF</strong>
+                  <p>0000 000 000 0000</p>
+                    <span>VALID</span> <span>01/28</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
